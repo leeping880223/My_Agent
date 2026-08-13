@@ -1,0 +1,13 @@
+# 環境變數與機密
+.env
+.env.*
+*.key
+*.pem
+*_key*
+*api_key*
+*apikey*
+secrets*
+credentials*
+
+# macOS
+.DS_Store
