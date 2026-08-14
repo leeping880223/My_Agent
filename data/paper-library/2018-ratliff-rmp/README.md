@@ -14,12 +14,12 @@
 | # | 重點 | 說明 | 理解程度 | 備註 |
 |---|---|---|---|---|
 | 1 | 動機：局部反應式策略的合成問題 | 全域規劃太慢、局部反應快但多個策略疊加（naive superposition／pseudoinverse）會互相打架、震盪（例：兩側障礙物斥力對稱抵銷後被忽略）。RMP 要解的就是「多策略如何正確合成」 | 略懂 | 未直接測，Q1 回饋中有講解 |
-| 2 | RMP 定義：(f, A) | f 是二階動力系統（位置+速度 → 期望加速度，即 acceleration policy）；A(x, ẋ) 是隨狀態平滑變化的半正定 Riemannian 度量，編碼「這個策略在意哪些方向」 | 略懂 | Q1：方向性直覺對，但把 A 誤解為「阻力」；A 的真正角色是合成時的發言權（f 說要什麼，A 說多在意） |
-| 3 | 三大運算子：addition / pullback / pushforward | addition = metric 加權平均（式 8–9）；pullback 把 task space 的 RMP 拉回 C-space：(J⁺f, JᵀAJ)（式 10–11）；pushforward 反向。具線性、結合律、座標協變性 | 略懂 | Q2：知道 J 的作用，但誤以為 Jᵀ 有「反矩陣的感覺」；JᵀAJ 其實只是代入 ẋ=Jq̇ 的量長度組合，無反矩陣。奇異點的優雅降級 vs pseudoinverse 爆炸未答出 |
+| 2 | RMP 定義：(f, A) | f 是二階動力系統（位置+速度 → 期望加速度，即 acceleration policy）；A(x, ẋ) 是隨狀態平滑變化的半正定 Riemannian 度量，編碼「這個策略在意哪些方向」 | 懂 | Q1 誤解 A 為「阻力」；經 supplements 概念1 教學後，2026-08-15 檢驗通過（發言權語言正確解釋方向性設計與打架機制） |
+| 3 | 三大運算子：addition / pullback / pushforward | addition = metric 加權平均（式 8–9）；pullback 把 task space 的 RMP 拉回 C-space：(J⁺f, JᵀAJ)（式 10–11）；pushforward 反向。具線性、結合律、座標協變性 | 懂 | Q2 誤以為 Jᵀ 有「反矩陣的感覺」；經教學後理解「先換算再打分」，並自行確認 pullback 方向（任務→關節、f 與 A 一起搬） |
 | 4 | 與 natural gradient 的類比 | pullback metric JᵀAJ 對應機器學習中 natural gradient 的協變轉換；RMP 可視為 natural vector field | 不懂 | 未測；需要 ML 的 natural gradient 背景，論文未解釋 → background-extension 候選 |
-| 5 | C-space 合成的最優性 | 合成解 = arg min Σ ½‖ẍᵢᵈ − Jᵢq̈‖²_{Aᵢ}（式 21），每個 RMP 是一個二次項（f 是最小值點、A 是 Hessian，類比 Gaussian 的 mean/variance）；結果與集中式 QP 等價但保有模組化 | 略懂 | 與重點 2 的誤解連動：A 在最小平方中是權重矩陣這件事需鞏固 |
-| 6 | 基本局部策略庫 | target attractor（soft-normalization s(v)，式 23–24）、orientation（對軸上 canonical point 放 attractor）、collision（斥力+方向性阻尼，A=w·s ssᵀ，式 25–26）、redundancy resolution（C-space spring-damper 拉回預設姿勢） | 略懂 | Q3：阻尼項作用答對（拿掉會震盪不收斂）；但 soft-normalization 答反——重點是「遠處飽和成定力、近處平滑歸零」，不是遠處像彈簧 |
-| 7 | Directionally stretched metric | A_stretch = ξξᵀ 只在意單一方向；常用 pattern：β·A_stretch+(1−β)I 再乘權重 w(x)（式 58–60）。度量的 eigenspectrum 定義策略在意的方向，是 soft nullspace | 略懂 | Q1 中展現方向性直覺（障礙物方向權重大、垂直方向可滑行） |
+| 5 | C-space 合成的最優性 | 合成解 = arg min Σ ½‖ẍᵢᵈ − Jᵢq̈‖²_{Aᵢ}（式 21），每個 RMP 是一個二次項（f 是最小值點、A 是 Hessian，類比 Gaussian 的 mean/variance）；結果與集中式 QP 等價但保有模組化 | 懂 | 隨概念1 檢驗通過一併鞏固（加權平均→分方向發言權→合成） |
+| 6 | 基本局部策略庫 | target attractor（soft-normalization s(v)，式 23–24）、orientation（對軸上 canonical point 放 attractor）、collision（斥力+方向性阻尼，A=w·s ssᵀ，式 25–26）、redundancy resolution（C-space spring-damper 拉回預設姿勢） | 懂 | Q3 soft-normalization 曾答反；經 supplements 概念4（公式逐字拆解）教學後，2026-08-15 檢驗通過（α/β 失調行為、f 與 A 分工均正確） |
+| 7 | Directionally stretched metric | A_stretch = ξξᵀ 只在意單一方向；常用 pattern：β·A_stretch+(1−β)I 再乘權重 w(x)（式 58–60）。度量的 eigenspectrum 定義策略在意的方向，是 soft nullspace | 懂 | 2026-08-15 檢驗通過：能解釋垂直方向設 0 的理由與設高的後果 |
 | 8 | 整合慢速優化器（MPC/RieMO） | 計算昂貴的 MPC 在慢迴圈（10–20 Hz）把最優解線性化成 linear RMP（π* + ∇²Q，式 92）串流給快的 RMP core（1 kHz）合成 | 略懂 | Q5-1：慢引導快、失敗重規劃的架構對，但誤以為送的是切塊路徑目標點；實際送的是線性化策略＋度量 |
 | 9 | 長程導航啟發式 | retract heuristic（先縮回 canonical 姿勢再伸出，倒放縮回=伸出）＋ guiding points（粗略 IK 引導），手肘不被擋就不需完整規劃器 | 懂 | Q5-2：安全返回點概念正確 |
 | 10 | Joint limit 處理 | 用 sigmoid 映射把受限 C-space 對應到無約束空間：值域有界保證絕不越界；σ′ 在極限附近趨零使 Jacobian 對應行降權（式 72–83），且只壓制「朝極限移動」的方向 | 懂 | Q4：σ′ 漸小機制答對；補充了值域保證與速度方向 gating。對應 RMPflow 的 joint_limit_buffers |
