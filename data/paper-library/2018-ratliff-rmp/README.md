@@ -5,6 +5,7 @@
 - **作者**：Nathan D. Ratliff, Jan Issac, Daniel Kappler, Stan Birchfield, Dieter Fox（NVIDIA / Max Planck）
 - **發表處／年份**：arXiv:1801.02854v3, 2018
 - **連結**：https://arxiv.org/abs/1801.02854
+- **官方 demo 影片**：[Research at NVIDIA: RMPflow – A Computational Graph for Automatic Motion Policy Generation](https://www.youtube.com/watch?v=Fl4WvsXQDzo)
 - **一句話摘要**：提出 RMP——把「加速度策略 + Riemannian 度量」綁成一個數學物件，讓多個運動策略能在不同 task space 間做幾何一致的轉換與合成，證明其最優性，統一了 operational space control、DMP、MPC 等多種運動生成方法。
 
 ## 重點清單與理解程度
