@@ -54,7 +54,24 @@ data/
 | career/job-matching | profile/skills.md、career-plan/ | profile/skills.md、career-plan/changelog.md、career-plan/current-plan.md |
 | career/interest-tracker | profile/task-feelings.md | profile/task-feelings.md、profile/interests.md |
 
-## 3. 每次工作結束的固定流程
+## 3. 收到新論文時的處理流程
+
+使用者丟一篇新論文（PDF／連結／文字）時，依序執行下列四個 skill。每一步的產出都是下一步的輸入，所以**預設不跳步**——但使用者可以指定從任一步開始或喊停。
+
+| 步驟 | Skill | 開工前必做的檢查 | 產出 |
+|---|---|---|---|
+| 1 | `research/qa-check-knowhow` | **先問使用者與本篇的接觸程度**（沒接觸過／接觸過未讀本篇／掃過細節不熟／完全讀過），據此調整出題深度與起點 | 論文資料夾（含 `paper.pdf`）、該論文 README 的重點清單與理解程度、第1層總表、knowledge-map |
+| 2 | `research/background-extension` | 讀該論文 README 找出「不懂／略懂」的概念 | `supplements.md`（A 區＝論文沒解釋的背景知識；B 區＝論文有講但需重講的重點） |
+| 3 | `research/slide-maker` | **先產出大綱＋風格選項給使用者確認**，確認後才動工 | `slides/` 底下的 pptx 與 pdf、骨架版與完整版講稿與音檔 |
+| 4 | `research/review` | **若非首次複習，先從待複習清單抽考** | 四階段（懂／會／記／說）結果、待複習清單更新、理解程度升降 |
+
+**彈性規則**：
+- 使用者已熟悉的論文可直接從步驟 3 或 4 開始。
+- 步驟 4 可反覆執行（間隔重複），每次都先抽考清單。
+- 每完成一個步驟，都要跑第 4 節「每次工作結束的固定流程」。
+- 使用者中途提出流程改進時，**當下就寫回對應的 SKILL.md**，不要只在對話裡答應。
+
+## 4. 每次工作結束的固定流程
 
 每次完成一項工作（任何 skill 或任務）後，**主動詢問使用者**：
 
@@ -66,6 +83,6 @@ data/
    - **快速掃法**：`grep` skill 檔案裡的專有名詞（論文名、工具名、專案名、數字），確認每一個都是舉例而非規則本體；寫死的數字改成比例或原則。
    - 也要反向檢查：規則有沒有隱含假設某種論文類型／作業系統／檔案格式，換一種就會失效。
 
-## 4. 語言規則
+## 5. 語言規則
 
 **回答一律使用繁體中文。**
