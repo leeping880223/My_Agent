@@ -41,4 +41,4 @@ description: 讀取論文 README.md 與 knowledge-map.md，針對使用者不懂
    - 使用者理解後，更新該論文 `README.md` 與 `data/knowledge-map.md` 中對應概念的理解程度。
 
 6. **收尾**
-   - 當所有缺口補齊後，告知使用者可以進入 `slide-maker` 階段。
+   - 當所有缺口補齊後，告知使用者可以進入 `3.slide-maker` 階段。

@@ -39,4 +39,4 @@ description: 讀取 goals.md、dev-log/、plan-changelog.md、career-plan/change
 
 5. **產出**
    - 將故事素材整理成文件交給使用者（建議存放位置由使用者決定，例如 `data/career-plan/` 底下）。
-   - 提醒使用者：素材要口語化練習過才能上場，可搭配 `review` 的「說」階段模式演練。
+   - 提醒使用者：素材要口語化練習過才能上場，可搭配 `4.review` 的「說」階段模式演練。

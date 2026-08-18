@@ -40,10 +40,10 @@ data/
 
 | Skill | 讀取 | 寫入 |
 |---|---|---|
-| research/qa-check-knowhow | paper-library/ | 論文資料夾 README.md、paper-library/README.md、knowledge-map.md |
-| research/background-extension | 論文 README.md、knowledge-map.md | 論文 supplements.md |
-| research/slide-maker | 論文 README.md、supplements.md | 論文 slides/ |
-| research/review | 論文全部檔案 | 論文 README.md、knowledge-map.md |
+| research/1.qa-check-knowhow | paper-library/ | 論文資料夾 README.md、paper-library/README.md、knowledge-map.md |
+| research/2.background-extension | 論文 README.md、knowledge-map.md | 論文 supplements.md |
+| research/3.slide-maker | 論文 README.md、supplements.md | 論文 slides/ |
+| research/4.review | 論文全部檔案 | 論文 README.md、knowledge-map.md |
 | develop/goal-planner | profile/skills.md | goals.md |
 | develop/plan-adjuster | goals.md | goals.md、plan-changelog.md |
 | develop/dev-logger | dev-log/ | dev-log/ |
@@ -60,10 +60,10 @@ data/
 
 | 步驟 | Skill | 開工前必做的檢查 | 產出 |
 |---|---|---|---|
-| 1 | `research/qa-check-knowhow` | **先問使用者與本篇的接觸程度**（沒接觸過／接觸過未讀本篇／掃過細節不熟／完全讀過），據此調整出題深度與起點 | 論文資料夾（含 `paper.pdf`）、該論文 README 的重點清單與理解程度、第1層總表、knowledge-map |
-| 2 | `research/background-extension` | 讀該論文 README 找出「不懂／略懂」的概念 | `supplements.md`（A 區＝論文沒解釋的背景知識；B 區＝論文有講但需重講的重點） |
-| 3 | `research/slide-maker` | **先產出大綱＋風格選項給使用者確認**，確認後才動工 | `slides/` 底下的 pptx 與 pdf、骨架版與完整版講稿與音檔 |
-| 4 | `research/review` | **若非首次複習，先從待複習清單抽考** | 四階段（懂／會／記／說）結果、待複習清單更新、理解程度升降 |
+| 1 | `research/1.qa-check-knowhow` | **先問使用者與本篇的接觸程度**（沒接觸過／接觸過未讀本篇／掃過細節不熟／完全讀過），據此調整出題深度與起點 | 論文資料夾（含 `paper.pdf`）、該論文 README 的重點清單與理解程度、第1層總表、knowledge-map |
+| 2 | `research/2.background-extension` | 讀該論文 README 找出「不懂／略懂」的概念 | `supplements.md`（A 區＝論文沒解釋的背景知識；B 區＝論文有講但需重講的重點） |
+| 3 | `research/3.slide-maker` | **先產出大綱＋風格選項給使用者確認**，確認後才動工 | `slides/` 底下的 pptx 與 pdf、骨架版與完整版講稿與音檔 |
+| 4 | `research/4.review` | **若非首次複習，先從待複習清單抽考** | 四階段（懂／會／記／說）結果、待複習清單更新、理解程度升降 |
 
 **彈性規則**：
 - 使用者已熟悉的論文可直接從步驟 3 或 4 開始。
