@@ -37,3 +37,10 @@
 
 ### 後期（待工研院 G1 到貨）
 - [ ] Sim-to-real：unitree_sim_isaaclab 用與實機相同的 DDS 通訊協定，模擬程式碼可直接對接實機 — 這是選它當基底的關鍵理由
+
+---
+
+## 📌 待處理（非本專案）
+
+- [ ] **自動化展見聞記錄**（2026-08-18 參觀，尚未記錄）— 使用者表示有東西要記錄，換聊天室後處理。
+  - ⚠️ **目前 `data/` 沒有存放「外部見聞／展覽情報」的地方**。內容出來之後再依性質分流：新技術或現成方案 → `dev-log/` 或跑 `develop/newtech-searching`；影響技術路線 → 本檔＋`plan-changelog.md`；職缺或產業線索 → `career-plan/job-targets.md`；個人感受 → `profile/task-feelings.md`。若發現這些都不合適，就是該新增一類資料夾的訊號，屆時一併更新 CLAUDE.md 第 2 節。
