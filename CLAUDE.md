@@ -26,6 +26,7 @@ data/
 ├── plan-changelog.md        # 計畫調整紀錄：日期｜改變內容｜原因
 ├── dev-log/                 # 踩坑紀錄（memory）：日期／嘗試的方法／為何失敗／替代方案
 ├── weekly/                  # 週報存檔（PPT + MD）
+├── field-notes/             # 外部見聞：展覽／研討會／參訪。一個活動一資料夾，內含 README.md（活動總覽＋逐家紀錄）與 media/（照片、錄音等原始素材）
 ├── profile/
 │   ├── skills.md            # 使用者技能清單（含程度），持續更新
 │   ├── interests.md         # 性向分析結果，持續更新
@@ -53,6 +54,8 @@ data/
 | career/leetcode-training | dev-log/、開發程式碼 | （問答驗證） |
 | career/job-matching | profile/skills.md、career-plan/ | profile/skills.md、career-plan/changelog.md、career-plan/current-plan.md |
 | career/interest-tracker | profile/task-feelings.md | profile/task-feelings.md、profile/interests.md |
+
+**尚無對應 skill 的資料**：`field-notes/` 目前由對話中手動維護（見 [data/field-notes/README.md](data/field-notes/README.md)）。記完之後要依性質分流到 dev-log／goals／career-plan／task-feelings，分流規則寫在該 README。
 
 ## 3. 收到新論文時的處理流程
 

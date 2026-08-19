@@ -42,5 +42,16 @@
 
 ## 📌 待處理（非本專案）
 
-- [ ] **自動化展見聞記錄**（2026-08-18 參觀，尚未記錄）— 使用者表示有東西要記錄，換聊天室後處理。
-  - ⚠️ **目前 `data/` 沒有存放「外部見聞／展覽情報」的地方**。內容出來之後再依性質分流：新技術或現成方案 → `dev-log/` 或跑 `develop/newtech-searching`；影響技術路線 → 本檔＋`plan-changelog.md`；職缺或產業線索 → `career-plan/job-targets.md`；個人感受 → `profile/task-feelings.md`。若發現這些都不合適，就是該新增一類資料夾的訊號，屆時一併更新 CLAUDE.md 第 2 節。
+### 2026 台北國際自動化工業大展（8/19 下午、8/20 全天）— 進行中
+
+紀錄位置：[data/field-notes/2026-08-automation-taipei/](field-notes/2026-08-automation-taipei/)
+（2026-08-19 新增 `data/field-notes/` 這一類資料夾，用途見 [field-notes/README.md](field-notes/README.md)，CLAUDE.md 第 2 節已同步）
+
+- [x] 建立紀錄檔，寫入 8/19 已看的公司與 8/20 待看清單
+- [ ] 8/20 依現場捕捉清單蒐集（每家：定位／demo／技術棧／有無用 NVIDIA／徵什麼職能／拍照）
+- [ ] 錄音與照片放進 `media/`，回填紀錄檔（把「（網查）」換成第一手內容）
+- [ ] **實習分享報告**：挑 3–5 家產出心得＋重點資訊，**下下週例會**（約 2026-09-01 那週，確切日期待確認）
+- [ ] 展後跑 `career/job-matching`：把有興趣的公司／職缺寫進 `career-plan/job-targets.md`，做技能差距分析
+- [ ] 跑 `career/interest-tracker` 記錄逛展感受
+
+**已浮現、值得追的三家**（都與 G1 論文直接相關）：至盛科技（Unitree 台灣代理／整合）、台智寶（上緯，本土人形＋四足，正在組生態系）、Solomon（3D 視覺 bin picking，正面對上手術器械夾取問題）。
