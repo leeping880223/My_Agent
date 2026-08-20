@@ -126,34 +126,58 @@
 
 ## ✅ 已完成
 
-- [x] 手術器械合成資料 pipeline（14 種 USD → Replicator 拍照 → YOLO seg 格式）— mAP50 ~0.9
-- [x] Isaac Sim 即時辨識 + 2D→3D 座標轉換（`inference/yolo_isaac_final.py`）
+- [x] **（教授步驟 1 Synthetic data generation）** 手術器械合成資料 pipeline（14 種 USD → Replicator 拍照 → YOLO seg 格式）— mAP50 ~0.9
+- [x] **（教授步驟 2 Instrument segmentation ＋ 3 3D localization）** Isaac Sim 即時辨識 + 2D→3D 座標轉換（`inference/yolo_isaac_final.py`）
 - [x] G1 右手臂 RMPflow reach demo — 手刻 URDF/RMPflow 設定，YOLO 驅動伸手到器械位置（限制：rubber_hand 不能夾、pelvis 釘死不能走）
 
 ## 🚀 即將要做
 
-### 階段一：官方框架遷移（基礎建設）
+> **2026-08-20 依教授的 10 步驟重排。** 對應關係：1–3 已完成，主線＝**4 Pose estimation → 6 Grasp planning →（5 Motion planning）→ 7 Vision-language understanding → 8 Autonomous manipulation → 9 Human-robot collaboration → 10 Real-world validation**。
+> **排序原則**：① 教授專長是影像，骨幹留在影像主線；② chatbox 落在步驟 7；③ **行走搬運降級為選配**。
+
+### 階段一：基礎建設（官方框架遷移）
 - [ ] 安裝 Isaac Lab + `unitreerobotics/unitree_sim_isaaclab`，跑通官方 `Isaac-PickPlace-Cylinder-G129-Dex3-Joint` 範例（預估：1–2 週；依賴：無）— 產出：官方 G1+Dex3 pick-place 在本機能跑
   - ⚠️ 風險：RTX 5060 Ti 8GB VRAM 偏小（官方測試機為 3080 以上）；RTX 50 系需 Isaac Sim 5.0+。若跑不動，降解析度/env 數，或借實驗室 GPU
 - [ ] 評估：現有 RMPflow 手臂控制 vs unitree_sim_isaaclab 的控制方式，決定夾取方案走哪條（預估：3 天；依賴：上一項）— 產出：決策紀錄（寫入 plan-changelog）
+- [ ] 把手術器械 USD 資產搬進 unitree_sim_isaaclab 場景，接上現有 YOLO 辨識（預估：1 週）— 產出：G1 面前桌上有器械且能即時辨識
 
-### 階段二：手術器械夾取與分揀（目標 1）
-- [ ] 把手術器械 USD 資產搬進 unitree_sim_isaaclab 場景，接上 YOLO 辨識（預估：1 週）— 產出：G1 面前桌上有器械且能即時辨識
-- [ ] Dex3 夾取單一器械（先 scripted/teleop 驗證可夾性，器械細長是難點，可能需調抓取姿態或器械擺放）（預估：2–3 週）— 產出：夾起 ≥3 種器械的成功 demo
-- [ ] 分類放置：依 YOLO 類別把器械放到對應收納位置，完成 sorting 迴圈（預估：2 週；依賴：上一項）— 產出：完整分揀 demo 影片
+### 階段二｜步驟 4：Pose Estimation ★ 影像主線的核心
+- [ ] **合成資料補 6D pose 標註**：現有 Replicator pipeline 改輸出物件姿態（預估：1 週；依賴：無）— 產出：帶 pose ground truth 的資料集
+- [ ] **器械 6D pose 估測**：YOLO 分割 → 姿態估測（候選做法：pose head／PnP＋關鍵點／FoundationPose 類方法，先比較再選）（預估：2–3 週）— 產出：pose 誤差可量化的模型
+- [ ] **失敗案例分析**：細長件、反光、疊放、對稱器械（對稱會造成姿態多解）（預估：1 週）— 產出：論文實驗章節的第一塊
+- [ ] **資產缺口**：評估 **NeRF／Meta SAM 3D → mesh → USD**（3DGS 已排除，見 dev-log 2026-08-20）（預估：1 週）— ⚠️ 工研院自述手動拉一支器械約 1 小時且需實體器械
 
-### 階段三：行走與搬運（目標 2）
-- [ ] 跑通 `unitreerobotics/unitree_rl_lab`（官方 IsaacLab RL，支援 G1-29dof）＋ `unitree_rl_gym` 預訓練行走 policy，讓 G1 在場景中依速度指令行走（預估：2 週；依賴：階段一）— 產出：G1 行走 demo
-- [ ] 搬盒子行走：上半身固定持盒姿態 + 行走 policy，加 payload 域隨機化 fine-tune 提升穩定度（RL 基礎正好用上）（預估：3–4 週；依賴：上一項）— 產出：持盒行走不倒的 policy
-- [ ] 放置到櫃子上：行走至櫃前 → 停止 → 上半身放置動作（預估：2 週；依賴：上一項）— 產出：walk-carry-place 完整 demo
+### 階段三｜步驟 6＋5：Grasp Planning 與 Motion Planning
+- [ ] **抓取姿態生成**：由 pose／點雲產生抓取候選，處理細長件與「不能夾到刃口」這類約束（預估：2–3 週；依賴：階段二）— 產出：對 ≥3 種器械能算出可行抓取
+- [ ] **運動規劃接上**：沿用現有 RMPflow（或改 MoveIt 類），加碰撞檢查（預估：1–2 週）— 產出：從抓取候選到可執行軌跡
+- [ ] **Dex3 實際夾取驗證**：先 scripted/teleop 驗證可夾性（器械細長是難點，可能要調姿態或擺放）（預估：2–3 週）— 產出：夾起 ≥3 種器械的成功 demo
+- [ ] **分類放置迴圈**：依類別放到對應收納位置（預估：2 週）— 產出：完整分揀 demo 影片
 
-### 階段四：整合與論文
-- [ ] 整合 demo：辨識 → 分揀 → 搬運 → 放置 完整流程（預估：2 週；依賴：階段二、三）
+### 階段四｜步驟 7：Vision-Language Understanding（chatbox）
+- [ ] **最小可行 chatbox**：自然語言 → LLM 解析成 (動作, 物件, 目標) → **用 YOLO 分割結果做影像 grounding** → 呼叫既有 pick&place → 逐步回報狀態（預估：2 週；依賴：階段三）— 產出：打一句話機器人就動的 demo
+- [ ] **指代與模糊指令**：「那支彎的」「最上面那支」「跟剛才那支一樣的」——這是**影像 grounding 的論文點**，不是語言題（預估：1–2 週）
+- [ ] **量化評估**：指令成功率、grounding 準確率、失敗類型分布（預估：1 週）— 產出：論文實驗章節的第二塊
+- [ ] （後續評估，不排入主線）GR00T-N／端到端 VLA 是否適用於 G1＋Dex3
+
+### 階段五｜步驟 8＋9：自主操作與多機協作
+- [ ] **全自主迴圈**：identify → localize → grasp → hand over → place → organize 一次跑完（預估：2 週）— 產出：教授指定的自主行為全數達成
+- [ ] **★ 同一個指令下給多台機器人**（工研院想推的方向、教授清單第 9 項）（預估：3 週）— **從影像切入**：多視角／跨機器人的共同場景理解、指令該落到哪一台、誰看到哪一支器械 — 產出：差異化貢獻點（工研院展場的單台雙臂 demo 沒做到這件事）
+
+### 階段六｜步驟 10：Real-World Validation（待工研院 G1 到貨）
+- [ ] Sim-to-real：`unitree_sim_isaaclab` 與實機同為 DDS 通訊協定，模擬程式碼可直接對接 — 這是選它當基底的關鍵理由
+- [ ] 實機驗證與 sim-to-real 落差分析（預估：依到貨時間）— 產出：論文最後一塊實驗
+
+### 階段七：論文整合
+- [ ] 整合 demo：一句指令 → 辨識 → 姿態 → 抓取 → 分類放置（預估：2 週）
 - [ ] 論文寫作素材整理（實驗數據、消融、影片）（預估：持續）
 
-### 後期（待工研院 G1 到貨）
-- [ ] Sim-to-real：unitree_sim_isaaclab 用與實機相同的 DDS 通訊協定，模擬程式碼可直接對接實機 — 這是選它當基底的關鍵理由
+### 🎁 選配：行走與搬運（**降級，炫砲用**）
+> **2026-08-20 決策**：教授的 10 步驟裡沒有行走、與影像無關、使用者判斷也沒有好的應用場景（CSSD 的器械多在同一區流轉）。**保留為 demo 附加項，只有主線完成且有餘裕才做。**
+> **移動需求優先用「搭車」**——把機器人／手臂裝在移動平台（AMR）上，比雙足行走穩得多。展場佐證：Solomon 是 UR 手臂裝在 MiR AMR 上的複合機器人（MMR），研華也專門做 MMR 控制器。**雙足行走留給要炫的場合。**
 
+- [ ] （選配）跑通 `unitree_rl_lab` ＋ `unitree_rl_gym` 預訓練行走 policy，讓 G1 依速度指令行走（預估：2 週）
+- [ ] （選配）搬盒子行走：上半身固定持盒姿態 ＋ 行走 policy，加 payload 域隨機化 fine-tune（預估：3–4 週）
+- [ ] （選配）放置到櫃子上：行走至櫃前 → 停止 → 上半身放置（預估：2 週）
 ---
 
 ## 📌 待處理（非本專案）
