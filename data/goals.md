@@ -49,11 +49,29 @@
 
 > 教授原話：「You can focus 4–10 sections, if you do, your thesis will be remarkable and applicable to real-time industrial applications.」
 
-### 指導安排（待確認，很重要）
+### 指導安排（2026-08-20 更新：障礙已排除）
 
-- **Basanta 教授已表示願意指導**：「I am fine with it」「If he agrees, I can supervise you」
-- **前提是 Yang 教授同意**。使用者先前問過 Yang 教授，回覆是**沒有 bandwidth 再接新專案**
-- ⬜ **待辦：把 Yang 教授的同意這件事走完**（口頭或書面），否則指導關係懸而未決
+- **Basanta 教授願意指導**：「I am fine with it」「If he agrees, I can supervise you」
+- **Yang 教授已口頭同意要簽**（使用者 2026-08-20 告知）→ **前提條件達成，這關過了**
+- ⬜ 只剩把簽名的行政程序走完
+
+### ⚠️ Basanta 教授的專長是影像（2026-08-20 補，影響選題重心）
+
+使用者的判斷：**「他是做影像的，最好還是跟影像相關。」**
+
+這條直接決定 10 步驟裡力氣要放哪：
+
+| 步驟 | 與影像的關係 | 建議比重 |
+|---|---|---|
+| 4 Pose estimation | **純影像**，且是現有 YOLO → 3D position 的直接延伸 | **高** |
+| 6 Grasp planning | 抓取姿態多半從影像／點雲算出 | **高** |
+| 7 Vision-language understanding | **影像與語言的交集——VLA 的「V」正是教授的地盤** | **高** |
+| 5 Motion planning | 幾何與控制為主，影像成分低 | 中 |
+| 8 Autonomous manipulation | 整合層 | 中 |
+| 9 Human-robot collaboration | 偏系統與任務規劃 | 中（但這是工研院想要的差異化） |
+| 10 Real-world validation | 實驗 | 依進度 |
+
+**原則：論文骨幹留在「看得懂 → 算得出姿態 → 抓得起來」這條影像主線；VLA 是把它串起來的介面，不是拿來取代影像。**
 
 ### 三方期待對照（2026-08-20 補）
 
@@ -62,7 +80,7 @@
 | **Basanta 教授** | VLA ＋ 任務規劃 ＋ 自主操作（10 步驟的 4–10）；**清單裡沒有「行走搬運」** | 與 goals.md 現行的階段三（行走、搬盒）對不上 |
 | **工研院（ITRI）** | 推 **VLA 應用**：可下指令，**未來同一個指令可以下給多台機器人**；另外想要人形會走路 | 使用者的觀察：**走路目前沒有好的應用場景** |
 | **醫院 CSSD（真正的使用者）** | 若能做到**打包（器械包）**才是真需求 | **現階段太難**，做不到 |
-| **Yang 教授（現指導）** | 對要做什麼沒有明確想法，**傾向 VLA 這一類**（上次曾表達興趣） | — |
+| **Yang 教授（現指導）** | 沒有明確想法；**已口頭同意要簽** | 不再是阻礙（2026-08-20） |
 
 ### ⬜ 由此產生的待決策
 

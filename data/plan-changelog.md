@@ -8,3 +8,4 @@
 | 2026-07-28 | **指導安排變動（未完成）**：Basanta 教授表示願意指導，前提是 Yang 教授同意；Yang 教授先前表示沒有 bandwidth 接新專案。 | 新方向與現有實驗室的主軸差異大。⬜ 待把 Yang 教授的同意走完。 |
 | 2026-08-20 | **方向確認（非變更）**：自動化展兩天所見證實 VLA／語言介面是產業共識（台達 大腦 VLM/LLM＋小腦 EtherCAT、FANUC chatbox、達明 GR00T、Solomon 語言指令人形取物），與教授 7/28 提的方向一致。同時記下三方期待落差（教授無行走／工研院要走路但無場景／醫院真需求是打包）。 | 展場實地觀察，詳見 [field-notes](field-notes/2026-08-automation-taipei/README.md)。 |
 | 2026-08-20 | **3DGS 從資產生成方案中移除**，改評估 NeRF／Meta SAM 3D → mesh → USD。 | 3DGS 輸出點雲、無 mesh 即無 collision，Isaac Sim 用不了。詳見 [dev-log](dev-log/2026-08-20-3dgs-no-collision.md)。 |
+| 2026-08-20 | **指導安排的障礙解除**：Yang 教授口頭同意要簽，Basanta 教授的指導前提達成，只剩行政簽署。同時定調**論文重心維持在影像／視覺主線**（Basanta 專長是影像），VLA 作為串接介面而非取代影像。另：免寫 code 的圖形化編程改判為加分項，移出主線。 | 使用者 2026-08-20 告知。 |
