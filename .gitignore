@@ -15,11 +15,11 @@ credentials*
 # 外部見聞的原始素材：手機照片／影片／錄音檔案大（單場可達數百 MB），不進 git。
 # 原始檔留在本機 media/，重點內容一律回填到該活動的 README.md；
 # 需要保留的圖改存壓縮過的 .jpg/.png（不在此忽略之列）。
-data/field-notes/**/media/*.HEIC
-data/field-notes/**/media/*.heic
-data/field-notes/**/media/*.MOV
-data/field-notes/**/media/*.mov
-data/field-notes/**/media/*.MP4
-data/field-notes/**/media/*.mp4
-data/field-notes/**/media/*.m4a
-data/field-notes/**/media/*.wav
+data/field-notes/**/media/**/*.HEIC
+data/field-notes/**/media/**/*.heic
+data/field-notes/**/media/**/*.MOV
+data/field-notes/**/media/**/*.mov
+data/field-notes/**/media/**/*.MP4
+data/field-notes/**/media/**/*.mp4
+data/field-notes/**/media/**/*.m4a
+data/field-notes/**/media/**/*.wav
