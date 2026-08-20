@@ -8,6 +8,73 @@
 
 **Repo**：https://github.com/leeping880223/Isaac-sim
 
+## 📌 論文題目與方向（2026-07-28 與 Basanta 教授確認；2026-08-20 補上三方期待）
+
+> ⚠️ 這一節在 2026-08-20 之前只存在於通訊軟體對話裡，現在補寫進檔案。來源：2026-07-28（週二）與 Prof. Basanta Haobijam 的對話紀錄。
+
+### 為什麼換題目
+
+原本的 RL 題目**不可行**，換到 ITRI 的手術器械專案：
+
+> 「After we collect the data, we found action data is more than perception data, more than 4 times, and perception data is not regular. So that's impossible to do the reinforcement learning.」
+
+教授的回應：既然原本的 RL 專案因臨床資料的限制不再可行，這是合理的替代方向；並認為有 Isaac Sim／Isaac Lab／NVIDIA GR00T 的存取權、又同時有模擬與實機硬體，是做出有意義實驗的重大優勢。
+
+### 教授建議的題目
+
+- 短版：**Autonomous Surgical Instrument Manipulation Using Vision-Language-Action Models in Isaac Lab**
+- 長版：**Intelligent Autonomous Surgical Assistant: Integrating Vision-Language-Action Models, Task Planning, and Humanoid Robot Manipulation Using Isaac Sim and Real-Robot Deployment**
+
+### 教授指定的技術主線
+
+現況（教授的描述）：`Image → YOLO → Instrument Detection → 3D Position`
+建議延伸為：`Image → YOLO → 3D Pose → Motion Planning → Grasp Planning → Robot Manipulation`
+
+機器人要能**自主**完成：**identify → localize → grasp → hand over → place → organize**
+
+### 教授給的 10 步驟進程（★ 明講「聚焦 4–10」）
+
+| # | 項目 | 狀態 |
+|---|---|---|
+| 1 | Synthetic data generation | ✅ 已完成 |
+| 2 | Instrument segmentation | ✅ 已完成 |
+| 3 | 3D localization | ✅ 已完成 |
+| 4 | **Pose estimation** | ⬜ |
+| 5 | **Motion planning** | ⬜ |
+| 6 | **Grasp planning** | ⬜ |
+| 7 | **Vision-language understanding** | ⬜ |
+| 8 | **Autonomous manipulation** | ⬜ |
+| 9 | **Human-robot collaboration** | ⬜ |
+| 10 | **Real-world validation** | ⬜ |
+
+> 教授原話：「You can focus 4–10 sections, if you do, your thesis will be remarkable and applicable to real-time industrial applications.」
+
+### 指導安排（待確認，很重要）
+
+- **Basanta 教授已表示願意指導**：「I am fine with it」「If he agrees, I can supervise you」
+- **前提是 Yang 教授同意**。使用者先前問過 Yang 教授，回覆是**沒有 bandwidth 再接新專案**
+- ⬜ **待辦：把 Yang 教授的同意這件事走完**（口頭或書面），否則指導關係懸而未決
+
+### 三方期待對照（2026-08-20 補）
+
+| 誰 | 想要什麼 | 落差／風險 |
+|---|---|---|
+| **Basanta 教授** | VLA ＋ 任務規劃 ＋ 自主操作（10 步驟的 4–10）；**清單裡沒有「行走搬運」** | 與 goals.md 現行的階段三（行走、搬盒）對不上 |
+| **工研院（ITRI）** | 推 **VLA 應用**：可下指令，**未來同一個指令可以下給多台機器人**；另外想要人形會走路 | 使用者的觀察：**走路目前沒有好的應用場景** |
+| **醫院 CSSD（真正的使用者）** | 若能做到**打包（器械包）**才是真需求 | **現階段太難**，做不到 |
+| **Yang 教授（現指導）** | 對要做什麼沒有明確想法，**傾向 VLA 這一類**（上次曾表達興趣） | — |
+
+### ⬜ 由此產生的待決策
+
+1. **行走搬運（現行階段三）要不要留？**
+   - 支持留：工研院想要、是 G1 這個平台的賣點、與目標 2（搬盒行走）一致
+   - 支持砍：教授的 10 步驟沒有它、沒有好的應用場景、CSSD 的器械是在同一個房間內流轉、投入成本高（RL policy fine-tune 3–4 週起跳）
+   - 折衷：**降級成 demo 附加項**，論文主體放 4–10；或改成「同一指令下給多台機器人」的多機協作（正好對上工研院想推的東西，也對上教授清單的第 9 項 Human-robot collaboration）
+2. **「同一個指令給多台機器人」值得當成差異化的貢獻點嗎？**——這是工研院想推、教授清單有（#9）、而工研院展場 demo（單台雙臂）沒做到的地方
+3. **打包（packing）**：現在做不到，但值得在論文的「未來工作」寫清楚，並說明為什麼難（軟性材料、摺疊、無剛體假設）
+
+---
+
 ## ✅ 已完成
 
 - [x] 手術器械合成資料 pipeline（14 種 USD → Replicator 拍照 → YOLO seg 格式）— mAP50 ~0.9
