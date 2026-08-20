@@ -42,7 +42,7 @@
 | 4 | **Pose estimation** | ⬜ |
 | 5 | **Motion planning** | ⬜ |
 | 6 | **Grasp planning** | ⬜ |
-| 7 | **Vision-language understanding** | ⬜ |
+| 7 | **Vision-language understanding** | ⬜ ← chatbox 介面落在這裡（見下方） |
 | 8 | **Autonomous manipulation** | ⬜ |
 | 9 | **Human-robot collaboration** | ⬜ |
 | 10 | **Real-world validation** | ⬜ |
@@ -72,6 +72,37 @@
 | 10 Real-world validation | 實驗 | 依進度 |
 
 **原則：論文骨幹留在「看得懂 → 算得出姿態 → 抓得起來」這條影像主線；VLA 是把它串起來的介面，不是拿來取代影像。**
+
+### 💬 chatbox 介面（想法來源：2026 台北國際自動化工業大展，8/19–8/20）
+
+**這一項不是教授指定的，是這次逛展看到、判斷值得加進來的**（詳見 [field-notes](field-notes/2026-08-automation-taipei/README.md)）。
+
+**展場上的三個現成範例**：
+
+| 來源 | 做法 | 可借鑑的地方 |
+|---|---|---|
+| **FANUC** Physical AI Demo | 右側就是一個 chatbox：打「請寫 DRAGON」→ 回「先確認棋盤與托盤狀態…」→「開始寫…」→「完成！」；程式碼是 LLM 呼叫既有的 `pick_letter()`、`find_specific_word_move()` | **LLM 產生的是「呼叫既有 API 的高階指令」，不是關節角**。而且**逐步回報狀態**，使用者知道機器人在想什麼 |
+| **Solomon**（M400） | 打「找到葡萄汁，走過去拿起來，走回起始位置拿給我」→ 回「找到了，clear grape juice bottle 大約在正前方 5 公尺」→ 人形執行 | **回覆裡把「它認為自己看到什麼」講出來**，這是影像 grounding 的可視化 |
+| **台達 × NVIDIA** | 架構圖：大腦＝VLM｜LLM｜GPU，小腦＝EtherCAT｜工控 | 分層方式可直接照抄當論文的系統架構圖 |
+
+**為什麼這一項對本論文特別划算**：
+
+1. **正好落在教授清單第 7 項 vision-language understanding**，不是額外加碼
+2. **工研院想推的就是「下指令」**，而且未來要「同一個指令給多台機器人」——chatbox 是那件事的第一步
+3. **仍然是影像題**（Basanta 教授的專長）：指令要落到「**哪一支**器械」，靠的是影像 grounding；「把彎鉤剪刀放到綠布上」→ 得先在畫面裡指認出彎鉤剪刀。**語言只是入口，判對判錯還是影像在決定**
+4. **demo 效果最好**：口試、實習報告、工研院驗收，打一句話機器人就動，任何人都看得懂
+
+**最小可行做法（不要一開始就上端到端 VLA）**：
+
+```
+自然語言指令
+  → LLM 解析成結構化的 (動作, 物件, 目標位置)
+  → 用現有 YOLO 分割結果在影像中指認該物件（grounding）
+  → 呼叫現有的 pick & place / RMPflow
+  → 逐步把狀態回報到對話框（看到什麼、要去哪、做完了沒）
+```
+
+⬜ 待辦：等 goals.md 階段重排時，把這條排進 vision-language understanding 那一段；先做規則式／LLM 解析版，GR00T 等端到端 VLA 列為後續評估。
 
 ### 三方期待對照（2026-08-20 補）
 
