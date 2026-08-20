@@ -235,7 +235,7 @@
 - [ ] 錄音 11 段**先跳過**（使用者 2026-08-20 決定）；要處理時用 iPhone 轉錄或裝 whisper.cpp
 - [ ] 展後補問「徵什麼職能」（兩天現場都沒問到）——改看 104／官網職缺
 - [ ] ~~3DGS 試用~~ **已下修**：3DGS 是點雲、無 collision，Isaac Sim 用不了（見 [dev-log 2026-08-20](dev-log/2026-08-20-3dgs-no-collision.md)）。改評估 **NeRF／Meta SAM 3D → mesh → USD**；工研院自述手動拉一支器械約 1 小時且需實體器械
-- [ ] **實習分享報告**：挑 3–5 家產出心得＋重點資訊，**2026-08-28（五）例會**（倒推時程見紀錄檔）
+- [x] **實習分享報告**：初稿完成 → [internship-share-2026-08-28.md](field-notes/2026-08-automation-taipei/internship-share-2026-08-28.md)（2 頁、兩家公司：台達電、新代科技；使用者指定拿掉「差異化空隙」那段）。⬜ 待使用者確認選的公司是否要換
 - [ ] 展後跑 `career/job-matching`：把有興趣的公司／職缺寫進 `career-plan/job-targets.md`，做技能差距分析
 - [ ] 跑 `career/interest-tracker` 記錄逛展感受
 
