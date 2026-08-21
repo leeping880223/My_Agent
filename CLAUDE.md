@@ -29,6 +29,7 @@ data/
 ├── weekly/                  # 週報存檔（PPT + MD）
 ├── field-notes/             # 外部見聞：展覽／研討會／參訪。一個活動一資料夾，內含 README.md（活動總覽＋逐家紀錄）與 media/（照片、錄音等原始素材）
 ├── profile/
+│   ├── background.md        # 學經歷事實檔（學歷、工作、專題、獎項），來源：碩士甄試審查資料
 │   ├── skills.md            # 使用者技能清單（含程度），持續更新
 │   ├── interests.md         # 性向分析結果，持續更新
 │   └── task-feelings.md     # 每次任務感受的原始紀錄
