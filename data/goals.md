@@ -155,6 +155,26 @@
 > **2026-08-20 依教授的 10 步驟重排。** 對應關係：1–3 已完成，主線＝**4 Pose estimation → 6 Grasp planning →（5 Motion planning）→ 7 Vision-language understanding → 8 Autonomous manipulation → 9 Human-robot collaboration → 10 Real-world validation**。
 > **排序原則**：① 教授專長是影像，骨幹留在影像主線；② chatbox 落在步驟 7；③ **行走搬運降級為選配**。
 
+### 🗓 2026-09 → 12 的四個月排程（ITRI 實習期＝唯一的研究窗口）
+
+實習合約 2026-12 到期，這四個月是論文唯一能做研究的時間。**目標不是做完 10 步驟，而是產出一個可寫進論文、也可當作品集的完整段落。**
+
+| 週 | 做什麼 | 產出 |
+|---|---|---|
+| 1–3 | Isaac Lab ＋ `unitree_sim_isaaclab` 跑通、器械資產進場景 | 環境可用 |
+| 4–6 | **chatbox v1（指向版）**：LLM 解析 → YOLO grounding → RMPflow reach 指過去 → 回報 | **第一個可錄影的 demo** |
+| 7–11 | Dex3 夾取驗證（**風險最高**，器械細長） | 夾起 ≥3 種器械 |
+| 12–14 | **chatbox v2（夾取版）** ＋ 分類放置 | 完整迴圈 |
+| 15–16 | 錄影、README、數據整理 | 作品集 ＋ 論文素材 |
+
+**設計重點：可交付的 demo 前置、最大風險放中間。** chatbox v1 只需要辨識 ＋ 一個既有動作 API（reach 已經有），**不必等抓取做完**——萬一 Dex3 夾不起細長器械（很可能卡住），第 6 週就已經有東西在手，不會四個月空手。
+
+**兩個必要取捨**：
+1. **6D pose 的完整研究延後到 2027 寫作期**。這四個月只做「夠夾就好」的簡化姿態（用分割主軸估粗略朝向）。
+2. **行走完全不碰**（已降級為選配）。
+
+⚠️ 若研討會 deadline 早於 2027-03，上表要往前壓——問到 deadline 後回來對齊。
+
 ### 階段一：基礎建設（官方框架遷移）
 - [ ] 安裝 Isaac Lab + `unitreerobotics/unitree_sim_isaaclab`，跑通官方 `Isaac-PickPlace-Cylinder-G129-Dex3-Joint` 範例（預估：1–2 週；依賴：無）— 產出：官方 G1+Dex3 pick-place 在本機能跑
   - ⚠️ 風險：RTX 5060 Ti 8GB VRAM 偏小（官方測試機為 3080 以上）；RTX 50 系需 Isaac Sim 5.0+。若跑不動，降解析度/env 數，或借實驗室 GPU
